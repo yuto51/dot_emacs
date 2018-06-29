@@ -5,10 +5,10 @@
 (require 'package)
 
 ;; MELPAを追加
-;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 
 ;; MELPA-stableを追加
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 
 ;; Marmaladeを追加
 (add-to-list 'package-archives  '("marmalade" . "http://marmalade-repo.org/packages/") t)
@@ -18,7 +18,21 @@
 
 ;; 初期化
 (package-initialize)
-;; (package-refresh-contents)
+
+;; auto-install
+(defvar installling-package-list
+  '(
+    magit
+    helm
+    helm-descbinds
+    ))
+(dolist (x installling-package-list)
+  (let ((refreshed nil))
+    (unless (or (package-installed-p x) refreshed)
+      (package-refresh-contents)
+      (setq refreshed t))
+    (package-install x)
+    ))
 
 ;;;
 ;;; Locale & coding system
