@@ -62,7 +62,8 @@
 		   (cons 'font fontset-name))
       )
     )
-  (set-font "IPAGothic" 12)
+  ;; (set-font "IPAGothic" 12)
+  (set-font "Takaoゴシック" 12)
   ;; (set-font "Noto Sans Mono CJK JP Regular" 11)
   )
 
@@ -89,7 +90,10 @@
 ;;;
 ;;; Color theme
 ;;;
+;; (package-install 'solarized-theme)
 ;; (load-theme 'solarized-dark t)
+(package-install 'monokai-theme)
+(load-theme 'monokai t)
 
 ;;;
 ;;; Tab
