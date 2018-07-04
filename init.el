@@ -131,6 +131,13 @@ vi style of % jumping to matching brace."
   (setq python-shell-interpreter "ipython"))
 
 ;;;
+;;; XML
+;;;
+(add-to-list 'auto-mode-alist '("\\.launch\\'" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.machine\\'" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.test\\'" . nxml-mode))
+
+;;;
 ;;; Keybindings for default functions
 ;;;
 (global-set-key "\C-h" 'backward-delete-char)
