@@ -140,6 +140,20 @@ vi style of % jumping to matching brace."
 (add-to-list 'auto-mode-alist '("\\.launch\\'" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.machine\\'" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.test\\'" . nxml-mode))
+(add-hook 'nxml-mode-hook
+          (lambda ()
+            ;; スラッシュの入力で終了タグを自動補完
+            (setq nxml-slash-auto-complete-flag t)
+            (setq nxml-child-indent 2)
+            (setq nxml-attribute-indent 4)
+            (setq indent-tabs-mode nil)
+            (setq nxml-bind-meta-tab-to-complete-flag t)
+            ;; C-M-kで下位を含む要素全体をkillする
+            (setq nxml-sexp-element-flag t)
+            ;; グリフは非表示
+            (setq nxml-char-ref-display-glyph-flag nil)
+            (setq tab-width 4))
+          )
 
 ;;;
 ;;; Keybindings for default functions
