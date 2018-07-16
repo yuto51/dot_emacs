@@ -121,6 +121,13 @@ vi style of % jumping to matching brace."
 (package-install 'helm)
 (require 'helm-config)
 (helm-mode 1)
+(helm-descbinds-mode 1)
+(define-key helm-map "\C-h" 'delete-backward-char)
+(define-key helm-find-files-map "\C-h" 'delete-backward-char)
+(define-key helm-find-files-map "TAB" 'helm-execute-persistent-action)
+(define-key helm-read-file-map "TAB" 'helm-execute-persistent-action)
+(delete '(find-file) helm-completing-read-handlers-alist)
+(delete '(execute-extended-command) helm-completing-read-handlers-alist)
 
 ;;;
 ;;; Magit
