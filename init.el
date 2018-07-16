@@ -20,13 +20,13 @@
 (package-initialize)
 
 ;; auto-install
-(defvar installling-package-list
+(defvar installing-package-list
   '(
     magit
     helm
     helm-descbinds
     ))
-(dolist (x installling-package-list)
+(dolist (x installing-package-list)
   (let ((refreshed nil))
     (unless (or (package-installed-p x) refreshed)
       (package-refresh-contents)
