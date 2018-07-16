@@ -112,7 +112,7 @@ vi style of % jumping to matching brace."
   (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
         ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
         (t (self-insert-command (or arg 1)))))
-(global-set-key "\C-q" 'goto-match-paren)
+(define-key global-map "\C-q" 'goto-match-paren)
 (show-paren-mode 1)
 
 ;;;
@@ -133,7 +133,7 @@ vi style of % jumping to matching brace."
 ;;; Magit
 ;;;
 (package-install 'magit)
-(global-set-key "\C-xg" 'magit-status)
+(define-key global-map "\C-xg" 'magit-status)
 
 ;;;
 ;;; Python
@@ -165,9 +165,9 @@ vi style of % jumping to matching brace."
 ;;;
 ;;; Keybindings for default functions
 ;;;
-(global-set-key "\C-h" 'backward-delete-char)
-(global-set-key "\C-c\C-c" 'comment-region)
-(global-set-key "\M-g" 'goto-line)
+(define-key global-map "\C-h" 'backward-delete-char)
+(define-key global-map "\C-c\C-c" 'comment-region)
+(define-key global-map "\M-g" 'goto-line)
 
 ;;;
 ;;; misc
