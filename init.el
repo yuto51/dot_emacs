@@ -19,6 +19,12 @@
 ;; 初期化
 (package-initialize)
 
+;; Avoid writing custom variables at the tail of init.el (> Emacs25)
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(if (file-exists-p custom-file)
+    (load custom-file)
+  (write-region "" nil custom-file))
+
 ;; auto-install
 (defvar installing-package-list
   '(
