@@ -119,7 +119,7 @@ vi style of % jumping to matching brace."
   (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
         ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
         (t (self-insert-command (or arg 1)))))
-(define-key global-map "\C-q" 'goto-match-paren)
+(define-key global-map (kbd "C-q") 'goto-match-paren)
 (show-paren-mode 1)
 
 ;;;
@@ -129,10 +129,10 @@ vi style of % jumping to matching brace."
 (require 'helm-config)
 (helm-mode 1)
 (helm-descbinds-mode 1)
-(define-key helm-map "\C-h" 'delete-backward-char)
-(define-key helm-find-files-map "\C-h" 'delete-backward-char)
-(define-key helm-find-files-map "TAB" 'helm-execute-persistent-action)
-(define-key helm-read-file-map "TAB" 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-h") 'delete-backward-char)
+(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
+(define-key helm-find-files-map(kbd  "TAB") 'helm-execute-persistent-action)
+(define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
 (delete '(find-file) helm-completing-read-handlers-alist)
 (delete '(execute-extended-command) helm-completing-read-handlers-alist)
 
@@ -140,7 +140,7 @@ vi style of % jumping to matching brace."
 ;;; Magit
 ;;;
 (package-install 'magit)
-(define-key global-map "\C-xg" 'magit-status)
+(define-key global-map (kbd "C-x g") 'magit-status)
 
 ;;;
 ;;; Auto Complete
@@ -148,8 +148,8 @@ vi style of % jumping to matching brace."
 (require 'auto-complete)
 (require 'auto-complete-config)
 (global-auto-complete-mode t)
-(define-key ac-completing-map "\C-n" 'ac-next)
-(define-key ac-completing-map "\C-p" 'ac-previous)
+(define-key ac-completing-map (kbd "C-n") 'ac-next)
+(define-key ac-completing-map (kbd "C-p") 'ac-previous)
 (setq-default ac-sources '(ac-source-filename ac-source-words-in-same-mode-buffers))
 
 ;;;
@@ -182,9 +182,9 @@ vi style of % jumping to matching brace."
 ;;;
 ;;; Keybindings for default functions
 ;;;
-(define-key global-map "\C-h" 'backward-delete-char)
-(define-key global-map "\C-c\C-c" 'comment-region)
-(define-key global-map "\M-g" 'goto-line)
+(define-key global-map (kbd "C-h") 'backward-delete-char)
+(define-key global-map (kbd "C-c C-c") 'comment-region)
+(define-key global-map (kbd "M-g") 'goto-line)
 
 ;;;
 ;;; misc
