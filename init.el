@@ -28,6 +28,7 @@
 ;; auto-install
 (defvar installing-package-list
   '(
+    auto-complete
     magit
     helm
     helm-descbinds
@@ -140,6 +141,16 @@ vi style of % jumping to matching brace."
 ;;;
 (package-install 'magit)
 (define-key global-map "\C-xg" 'magit-status)
+
+;;;
+;;; Auto Complete
+;;;
+(require 'auto-complete)
+(require 'auto-complete-config)
+(global-auto-complete-mode t)
+(define-key ac-completing-map "\C-n" 'ac-next)
+(define-key ac-completing-map "\C-p" 'ac-previous)
+(setq-default ac-sources '(ac-source-filename ac-source-words-in-same-mode-buffers))
 
 ;;;
 ;;; Python
