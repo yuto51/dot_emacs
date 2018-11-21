@@ -1,3 +1,8 @@
+;;; init.el --- initialization settings
+;;; Commentary:
+;;; This file describes about my personal Emacs configuration.
+;;; Code:
+
 ;;;
 ;;; package.el
 ;;; http://emacs-jp.github.io/packages/package-management/package-el.html
@@ -29,9 +34,12 @@
 (defvar installing-package-list
   '(
     auto-complete
-    magit
+    flycheck
+    google-c-style
     helm
     helm-descbinds
+    helm-flycheck
+    magit
     ))
 (dolist (x installing-package-list)
   (let ((refreshed nil))
@@ -180,6 +188,32 @@ vi style of % jumping to matching brace."
           )
 
 ;;;
+;;; Flycheck
+;;;
+(require 'flycheck)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(with-eval-after-load 'flycheck
+  (define-key flycheck-mode-map (kbd "C-c n") 'flycheck-next-error)
+  (define-key flycheck-mode-map (kbd "C-c p") 'flycheck-previous-error)
+  (define-key flycheck-mode-map (kbd "C-c l") 'flycheck-list-errors)
+  )
+
+;;;
+;;; Helm interface for Flycheck
+;;;
+(with-eval-after-load 'flycheck
+  (require 'helm-flycheck)
+  (define-key flycheck-mode-map (kbd "C-c h") 'helm-flycheck)
+  )
+
+;;;
+;;; Google C++ Style Guide
+;;;
+(require 'google-c-style)
+(add-hook 'c-mode-common-hook 'google-set-c-style)
+(add-hook 'c++-mode-common-hook 'google-set-c-style)
+
+;;;
 ;;; Keybindings for default functions
 ;;;
 (define-key global-map (kbd "C-h") 'backward-delete-char)
@@ -190,3 +224,35 @@ vi style of % jumping to matching brace."
 ;;; misc
 ;;;
 (setq inhibit-startup-message t)  ;; No startup message
+
+;;;
+;;; Add sub-dirs to load-path
+;;;
+(let ((default-directory "~/.emacs.d/github"))
+  (normal-top-level-add-subdirs-to-load-path))
+
+;;;
+;;; Flycheck with cpplint
+;;;
+(with-eval-after-load 'flycheck
+  (require 'flycheck-google-cpplint)
+  (custom-set-variables
+   '(flycheck-c/c++-googlelint-executable "cpplint")
+   '(flycheck-googlelint-linelength "120")
+   )
+  (add-hook 'c-mode-common-hook #'(lambda () (flycheck-select-checker 'c/c++-googlelint)))
+  (add-hook 'c++-mode-common-hook #'(lambda () (flycheck-select-checker 'c/c++-googlelint)))
+  )
+
+;;;
+;;; flycheck catkin_lint
+;;;
+(with-eval-after-load 'flycheck
+  (require 'flycheck-catkin-lint)
+  (custom-set-variables
+   '(flycheck-catkin-lint-warning-level "2")
+   )
+  (add-hook 'cmake-mode-hook #'(lambda () (flycheck-select-checker 'cmake-catkin-lint)))
+  )
+
+;;; init.el ends here
