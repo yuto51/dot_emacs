@@ -38,7 +38,6 @@
 ;; auto-install
 (defvar installing-package-list
   '(
-    auto-complete
     flycheck
     google-c-style
     helm
@@ -137,14 +136,11 @@ vi style of % jumping to matching brace."
 (define-key global-map (kbd "C-x g") 'magit-status)
 
 ;;;
-;;; Auto Complete
+;;; Company-mode
 ;;;
-(require 'auto-complete)
-(require 'auto-complete-config)
-(global-auto-complete-mode t)
-(define-key ac-completing-map (kbd "C-n") 'ac-next)
-(define-key ac-completing-map (kbd "C-p") 'ac-previous)
-(setq-default ac-sources '(ac-source-filename ac-source-words-in-same-mode-buffers))
+(add-hook 'after-init-hook 'global-company-mode)
+(setq company-minimum-prefix-length 1
+      company-idle-delay 0.0) ;; default is 0.2
 
 ;;;
 ;;; Python
