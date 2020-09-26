@@ -178,6 +178,7 @@ vi style of % jumping to matching brace."
 ;;;
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(setq-default flycheck-checker nil)  ;; Default : automatically select the best syntax checker
 (with-eval-after-load 'flycheck
   (define-key flycheck-mode-map (kbd "C-c n") 'flycheck-next-error)
   (define-key flycheck-mode-map (kbd "C-c p") 'flycheck-previous-error)
