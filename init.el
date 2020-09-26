@@ -210,6 +210,9 @@ vi style of % jumping to matching brace."
 ;;; misc
 ;;;
 (setq inhibit-startup-message t)  ;; No startup message
+(add-to-list 'display-buffer-alist  ;; open shell in the same window
+     '("^\\*shell\\*$" . (display-buffer-same-window)))
+(put 'erase-buffer 'disabled nil)  ;; Enable 'Erase buffer' function
 
 ;;;
 ;;; Add sub-dirs to load-path
