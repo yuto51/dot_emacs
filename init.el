@@ -70,22 +70,8 @@
 ;;; Font setting
 ;;; https://www.google.com/get/noto/help/install/
 ;;;
-(when (display-graphic-p)  ;; GUI mode
-  (defun set-font (name size)
-    (let* ((font-name (apply 'concat (split-string name " ")))
-	   (fontset-name (concat "fontset-" font-name))
-	   (font-with-size (concat name "-" (number-to-string size)))
-	   )
-      (create-fontset-from-ascii-font font-with-size nil font-name)
-      (set-fontset-font fontset-name 'unicode font-with-size nil 'append)
-      (add-to-list 'default-frame-alist
-		   (cons 'font fontset-name))
-      )
-    )
-  ;; (set-font "IPAGothic" 12)
-  (set-font "Takaoゴシック" 12)
-  ;; (set-font "Noto Sans Mono CJK JP Regular" 11)
-  )
+(when (member "Noto Sans Mono CJK JP" (font-family-list))
+  (add-to-list 'default-frame-alist '(font . "Noto Sans Mono CJK JP 11")))
 
 ;;;
 ;;; Tool bar & Menu bar & Scroll bar
