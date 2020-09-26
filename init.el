@@ -139,7 +139,7 @@ vi style of % jumping to matching brace."
 (helm-descbinds-mode 1)
 (define-key helm-map (kbd "C-h") 'delete-backward-char)
 (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
-(define-key helm-find-files-map(kbd  "TAB") 'helm-execute-persistent-action)
+(define-key helm-find-files-map (kbd  "TAB") 'helm-execute-persistent-action)
 (define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
 (delete '(find-file) helm-completing-read-handlers-alist)
 (delete '(execute-extended-command) helm-completing-read-handlers-alist)
