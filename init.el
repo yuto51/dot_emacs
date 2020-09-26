@@ -136,6 +136,14 @@ vi style of % jumping to matching brace."
 (define-key global-map (kbd "C-x g") 'magit-status)
 
 ;;;
+;;; LSP mode
+;;;
+(require 'lsp-python-ms)
+(setq lsp-python-ms-auto-install-server t)
+(add-hook 'python-mode-hook #'lsp)
+(define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol)
+
+;;;
 ;;; Company-mode
 ;;;
 (add-hook 'after-init-hook 'global-company-mode)
