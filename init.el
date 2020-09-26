@@ -4,6 +4,17 @@
 ;;; Code:
 
 ;;;
+;;; backup file
+;;;
+(setq backup-directory-alist '((".*" . "~/.emacs.d/backup")))
+
+;; Avoid writing custom variables at the tail of init.el (> Emacs25)
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(if (file-exists-p custom-file)
+    (load custom-file)
+  (write-region "" nil custom-file))
+
+;;;
 ;;; package.el
 ;;; http://emacs-jp.github.io/packages/package-management/package-el.html
 ;;;
@@ -23,12 +34,6 @@
 
 ;; 初期化
 (package-initialize)
-
-;; Avoid writing custom variables at the tail of init.el (> Emacs25)
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(if (file-exists-p custom-file)
-    (load custom-file)
-  (write-region "" nil custom-file))
 
 ;; auto-install
 (defvar installing-package-list
@@ -90,11 +95,6 @@
     (menu-bar-mode 1)  ;; GUI
   (menu-bar-mode 0))  ;; Terminal
 (set-scroll-bar-mode t)
-
-;;;
-;;; backup file
-;;;
-(setq backup-directory-alist '((".*" . "~/.emacs.d/backup")))
 
 ;;;
 ;;; Show Line & Column number
