@@ -255,4 +255,10 @@ vi style of % jumping to matching brace."
   (add-hook 'cmake-mode-hook #'(lambda () (flycheck-select-checker 'cmake-catkin-lint)))
   )
 
+;;;
+;;; Load environment-specific settings
+;;;
+(let ((extra "~/.emacs.d/env-specific.el"))
+  (if (file-exists-p extra) (load-file extra)))
+
 ;;; init.el ends here

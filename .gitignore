@@ -3,6 +3,7 @@
 /elpa/
 ac-comphist.dat
 custom.el
+env-specific.el
 network-security.data
 kkcrc
 /github/
